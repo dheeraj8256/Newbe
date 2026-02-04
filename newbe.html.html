@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dheeraj's System Diagnostic</title>
+    <style>
+        body { background: #0a0a0a; color: #00ff41; font-family: 'Courier New', monospace; margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh; overflow: hidden; }
+        #console { width: 90%; max-width: 700px; background: rgba(0, 20, 0, 0.9); padding: 20px; border: 1px solid #00ff41; box-shadow: 0 0 20px #00ff41; }
+        .log { margin: 5px 0; font-size: 0.9rem; }
+        #heart-monitor { display: none; text-align: center; color: #ff4d6d; }
+        .pulse { font-size: 4rem; animation: beat 0.8s infinite; }
+        @keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        #proposal-zone { display: none; text-align: center; padding: 20px; background: #fff0f3; color: #ff4d6d; position: absolute; top: 0; left: 0; width: 100%; height: 100%; flex-direction: column; justify-content: center; align-items: center; }
+        .btn-box { position: relative; width: 100%; height: 200px; margin-top: 20px; }
+        button { padding: 15px 30px; font-weight: bold; border-radius: 25px; border: none; cursor: pointer; }
+        #yesBtn { background: #ff4d6d; color: white; }
+        #noBtn { background: #ffb3c1; color: #590d22; position: absolute; transition: 0.2s ease; }
+    </style>
+</head>
+<body>
+
+    <div id="console">
+        <div id="logs"></div>
+    </div>
+
+    <div id="heart-monitor">
+        <div class="pulse">❤️</div>
+        <h2>SENSORS DETECTED: UNUSUAL ADMIRATION</h2>
+        <p>Analyzing feelings for [Her Name]...</p>
+    </div>
+
+    <div id="proposal-zone">
+        <h1>Diagnostic Results: I'm in love Anjuu! ❤️</h1>
+        <p>Will you be my Valentine?</p>
+        <div class="btn-box">
+            <button id="yesBtn" onclick="celebrate()">YES</button>
+            <button id="noBtn" onmouseover="moveBtn()" onclick="moveBtn()">NO</button>
+        </div>
+    </div>
+
+    <script>
+        const logs = [
+            "> Booting Relationship_OS_v3.0...",
+            "> Checking memory banks: Found 1,000+ shared moments.",
+            "> Scanning hardware: Arduino_Heart_Sensor connected.",
+            "> Warning: CPU temperature rising near her...",
+            "> Running 'Will_You_Be_My_Valentine.exe'...",
+            "> SYSTEM OVERLOAD: Emotions exceeding capacity!"
+        ];
+
+        let logIndex = 0;
+        function showLogs() {
+            if (logIndex < logs.length) {
+                const div = document.createElement('div');
+                div.className = 'log';
+                div.innerText = logs[logIndex];
+                document.getElementById('logs').appendChild(div);
+                logIndex++;
+                setTimeout(showLogs, 1000);
+            } else {
+                setTimeout(startMonitor, 1000);
+            }
+        }
+
+        function startMonitor() {
+            document.getElementById('console').style.display = 'none';
+            document.getElementById('heart-monitor').style.display = 'block';
+            setTimeout(showProposal, 3000);
+        }
+
+        function showProposal() {
+            document.getElementById('heart-monitor').style.display = 'none';
+            document.getElementById('proposal-zone').style.display = 'flex';
+        }
+
+        function moveBtn() {
+            const btn = document.getElementById('noBtn');
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 50);
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+        function celebrate() {
+            alert("System Success! I love you meri jaan! ❤️");
+            document.body.style.background = "#ff4d6d";
+            document.body.innerHTML = "<h1 style='color:white; text-align:center;'>Umaaaaaah💕😘! See you on the 14th!</h1>";
+        }
+
+        window.onload = showLogs;
+    </script>
+</body>
+</html>
